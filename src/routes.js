@@ -1,4 +1,6 @@
-export const ROUTES = [
+// Test routes from https://github.com/Copons/Ticket-to-Rome
+export default [
+
     {
         start: 'venezia', end: 'colosseo',
         type: 'green', parts: 1,
