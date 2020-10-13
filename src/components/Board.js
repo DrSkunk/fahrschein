@@ -1,7 +1,9 @@
 import React from 'react';
 import Station from './Station';
-import stations from '../game/oldStations';
+import stations from '../game/stations';
+// import stations from '../game/oldStations';
 import routes from '../game/routes';
+import Route from './Route';
 
 export class FahrscheinBoard extends React.Component {
   drawOpenCard = (index) => {
@@ -25,42 +27,27 @@ export class FahrscheinBoard extends React.Component {
       </button>
     ));
 
-    const stationElements = stations.map((station) => (
+    const stationElements = Object.values(stations).map((station, i) => (
       <Station
-        key={station.slug}
+        key={"station" + i}
         x={station.x}
         y={station.y}
-        name={station.name}
       />
     ));
 
-    // routes.map(route => {
-    //     if (route.qx && route.qy) {
-    //       return new RouteCurved(route);
-    //     }
-    //     return new RouteStraight(route);
-    //   });
-
-    const routeElements = routes.map((route) => {
-      const routeStart = stations.find(
-        (station) => station.slug === route.start
-      );
-      const routeEnd = stations.find((station) => station.slug === route.end);
-
-      return (
-        <line
-          x1={routeStart.x}
-          y1={routeStart.y}
-          x2={routeEnd.x}
-          y2={routeEnd.y}
-          stroke="black"
-        />
-      );
+    const routeElements = routes.map((route, i) => {
+      return <Route
+        key={"route" + i}
+        route={route}
+        onClick={() => { }}
+      />
     });
 
     const hand = this.props.G.players[0].cards.map((card, i) => (
       <span key={card + i}>{card}</span>
     ));
+
+    const modal = null;
     return (
       <div>
         {openDeck}
@@ -70,6 +57,7 @@ export class FahrscheinBoard extends React.Component {
           <svg width={1000} height={1000}>
             {routeElements}
             {stationElements}
+            {modal}
           </svg>
         </div>
       </div>

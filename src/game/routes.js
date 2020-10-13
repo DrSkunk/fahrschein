@@ -1,241 +1,950 @@
-// Test routes from https://github.com/Copons/Ticket-to-Rome
+import cardType from './cardType';
+import stations from './stations';
+
 export default [
-
-    {
-        start: 'venezia', end: 'colosseo',
-        type: 'green', parts: 1,
-    },
-    {
-        start: 'termini', end: 'colosseo',
-        type: 'blue', parts: 2,
-        displace: {
-            x1: -3.5, y1: -3.5,
-            x2: -3.5, y2: 2,
-        },
-    },
-    {
-        start: 'termini', end: 'colosseo',
-        type: 'wild', parts: 2,
-        displace: {
-            x1: 3.5, y1: -2,
-            x2: 3.5, y2: 3.5,
-        },
-    },
-    {
-        start: 'termini', end: 'spagna',
-        type: 'red', parts: 2,
-        qx: 204, qy: 146,
-    },
-    {
-        start: 'venezia', end: 'spagna',
-        type: 'orange', parts: 1,
-    },
-    {
-        start: 'spagna', end: 'ottaviano',
-        type: 'wild', parts: 3,
-        qx: 159, qy: 123,
-        displace: {
-            x1: 5, y1: 0,
-            x2: -3.5, y2: -3.5,
-            qx: 5, qy: -3,
-        },
-    },
-    {
-        start: 'spagna', end: 'ottaviano',
-        type: 'red', parts: 3,
-        qx: 159, qy: 123,
-        displace: {
-            x1: 0, y1: 6,
-            x2: -3.5, y2: 3.5,
-            qx: 4, qy: 4,
-        },
-    },
-    {
-        start: 'cipro', end: 'ottaviano',
-        type: 'black', parts: 1,
-    },
-    {
-        start: 'cipro', end: 'battistini',
-        type: 'red', parts: 4,
-        qx: 51, qy: 159,
-    },
-    {
-        start: 'clodio-mazzini', end: 'ottaviano',
-        type: 'purple', parts: 1,
-    },
-    {
-        start: 'ottaviano', end: 'san-pietro',
-        type: 'white', parts: 2,
-    },
-    {
-        start: 'venezia', end: 'san-pietro',
-        type: 'yellow', parts: 3,
-        qx: 144, qy: 166,
-    },
-    {
-        start: 'spagna', end: 'buenos-aires',
-        type: 'white', parts: 2,
-    },
-    {
-        start: 'vescovio', end: 'buenos-aires',
-        type: 'orange', parts: 2,
-    },
-    {
-        start: 'vescovio', end: 'jonio',
-        type: 'black', parts: 3,
-    },
-    {
-        start: 'jonio', end: 'talenti',
-        type: 'green', parts: 2,
-    },
-    {
-        start: 'talenti', end: 'ojetti',
-        type: 'orange', parts: 2,
-    },
-    {
-        start: 'jonio', end: 'conca-d-oro',
-        type: 'wild', parts: 1,
-    },
-    {
-        start: 'conca-d-oro', end: 'bologna',
-        type: 'blue', parts: 4,
-    },
-    {
-        start: 'termini', end: 'policlinico',
-        type: 'purple', parts: 2,
-    },
-    {
-        start: 'bologna', end: 'policlinico',
-        type: 'yellow', parts: 1,
-    },
-    {
-        start: 'bologna', end: 'tiburtina',
-        type: 'wild', parts: 1,
-    },
-    {
-        start: 'tiburtina', end: 'pietralata',
-        type: 'purple', parts: 3,
-    },
-    {
-        start: 'pietralata', end: 'rebibbia',
-        type: 'blue', parts: 3,
-    },
-    {
-        start: 'venezia', end: 'trastevere',
-        type: 'orange', parts: 3,
-    },
-    {
-        start: 'trastevere', end: 'roma-tre',
-        type: 'white', parts: 2,
-    },
-    {
-        start: 'roma-tre', end: 'eur-magliana',
-        type: 'red', parts: 2,
-    },
-    {
-        start: 'eur-magliana', end: 'agricoltura',
-        type: 'purple', parts: 1,
-    },
-    {
-        start: 'colosseo', end: 'piramide',
-        type: 'black', parts: 2,
-    },
-    {
-        start: 'piramide', end: 'basilica-s-paolo',
-        type: 'yellow', parts: 3,
-    },
-    {
-        start: 'basilica-s-paolo', end: 'eur-magliana',
-        type: 'green', parts: 2,
-    },
-    {
-        start: 'eur-magliana', end: 'laurentina',
-        type: 'black', parts: 3,
-    },
-    {
-        start: 'termini', end: 's-giovanni',
-        type: 'red', parts: 3,
-    },
-    {
-        start: 's-giovanni', end: 'ponte-lungo',
-        type: 'wild', parts: 2,
-    },
-    {
-        start: 'ponte-lungo', end: 'arco-di-travertino',
-        type: 'blue', parts: 2,
-    },
-    {
-        start: 'arco-di-travertino', end: 'numidio-quadrato',
-        type: 'green', parts: 2,
-    },
-    {
-        start: 'numidio-quadrato', end: 'subaugusta',
-        type: 'purple', parts: 2,
-    },
-    {
-        start: 'subaugusta', end: 'anagnina',
-        type: 'red', parts: 3,
-    },
-    {
-        start: 'colosseo', end: 's-giovanni',
-        type: 'green', parts: 3,
-    },
-    {
-        start: 's-giovanni', end: 'pigneto',
-        type: 'orange', parts: 2,
-    },
-    {
-        start: 'pigneto', end: 'parco-di-centocelle',
-        type: 'white', parts: 4,
-    },
-    {
-        start: 'parco-di-centocelle', end: 'grotte-celoni',
-        type: 'black', parts: 6,
-    },
-    {
-        start: 'grotte-celoni', end: 'pantano',
-        type: 'green', parts: 4,
-    },
-
-
-    {
-        start: 'cipro', end: 'san-pietro',
-        type: 'wild', parts: 2,
-    },
-    {
-        start: 'san-pietro', end: 'trastevere',
-        type: 'blue', parts: 4,
-    },
-    {
-        start: 'trastevere', end: 'piramide',
-        type: 'wild', parts: 2,
-    },
-    {
-        start: 'piramide', end: 'ponte-lungo',
-        type: 'red', parts: 6,
-    },
-    {
-        start: 'ponte-lungo', end: 'pigneto',
-        type: 'yellow', parts: 2,
-    },
-    {
-        start: 'tiburtina', end: 'pigneto',
-        type: 'wild', parts: 3,
-    },
-    {
-        start: 'spagna', end: 'vescovio',
-        type: 'purple', parts: 6,
-    },
-    {
-        start: 'conca-d-oro', end: 'tiburtina',
-        type: 'white', parts: 6,
-    },
-    /*  {
-        start: '', end: '',
-        type: '', parts: ,
-      },
-      {
-        start: '', end: '',
-        type: '', parts: ,
-      },*/
+  {
+    start: stations.lisboa,
+    end: stations.cadiz,
+    type: cardType.blue,
+    wagons: [
+      { x: 17.317, y: 583.723, r: 65 },
+      { x: 40.922, y: 616.04, r: 12 },
+    ],
+  },
+  {
+    start: stations.lisboa,
+    end: stations.madrid,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.cadiz,
+    end: stations.madrid,
+    type: cardType.orange,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.pamplona,
+    end: stations.madrid,
+    type: [cardType.black, cardType.white],
+    tunnel: true,
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ], [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ]
+  },
+  {
+    start: stations.madrid,
+    end: stations.barcelona,
+    type: cardType.yellow,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.pamplona,
+    end: stations.barcelona,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.barcelona,
+    end: stations.marseille,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.pamplona,
+    end: stations.marseille,
+    type: cardType.red,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.pamplona,
+    end: stations.brest,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.pamplona,
+    end: stations.paris,
+    type: [cardType.blue, cardType.green],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ], [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ],
+  }, {
+    start: stations.brest,
+    end: stations.paris,
+    type: cardType.black,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.brest,
+    end: stations.dieppe,
+    type: cardType.orange,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.dieppe,
+    end: stations.paris,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.paris,
+    end: stations.marseille,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.marseille,
+    end: stations.zurich,
+    type: cardType.purple,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.paris,
+    end: stations.zurich,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.dieppe,
+    end: stations.london,
+    type: [cardType.wild, cardType.wild],
+    locomotives: 1,
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ], [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ],
+  }, {
+    start: stations.london,
+    end: stations.edinburgh,
+    type: [cardType.black, cardType.orange],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ],
+  }, {
+    start: stations.london,
+    end: stations.amsterdam,
+    type: cardType.wild,
+    locomotives: 2,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.paris,
+    end: stations.bruxelles,
+    type: [cardType.yellow, cardType.red],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+    ],
+  }, {
+    start: stations.dieppe,
+    end: stations.bruxelles,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.amsterdam,
+    end: stations.essen,
+    type: cardType.yellow,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.amsterdam,
+    end: stations.frankfurt,
+    type: cardType.white,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.bruxelles,
+    end: stations.frankfurt,
+    type: cardType.blue,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.bruxelles,
+    end: stations.amsterdam,
+    type: cardType.black,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.paris,
+    end: stations.frankfurt,
+    type: [cardType.white, cardType.orange],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+    ],
+  }, {
+    start: stations.essen,
+    end: stations.kobenhavn,
+    type: [cardType.wild, cardType.wild],
+    locomotives: 1,
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ], [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+    ],
+  }, {
+    start: stations.kobenhavn,
+    end: stations.stockholm,
+    type: [cardType.yellow, cardType.white],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+    ],
+  }, {
+    start: stations.stockholm,
+    end: stations.petrograd,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.essen,
+    end: stations.berlin,
+    type: cardType.blue,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.frankfurt,
+    end: stations.essen,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.frankfurt,
+    end: stations.berlin,
+    type: [cardType.black, cardType.red],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+    ],
+  }, {
+    start: stations.frankfurt,
+    end: stations.munchen,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.munchen,
+    end: stations.zurich,
+    type: cardType.yellow,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.zurich,
+    end: stations.venezia,
+    type: cardType.green,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.marseille,
+    end: stations.roma,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.munchen,
+    end: stations.venezia,
+    type: cardType.black,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.venezia,
+    end: stations.roma,
+    type: cardType.black,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.palermo,
+    end: stations.roma,
+    type: cardType.wild,
+    locomotives: 1,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.roma,
+    end: stations.brindisi,
+    type: cardType.white,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.palermo,
+    end: stations.brindisi,
+    type: cardType.wild,
+    locomotives: 1,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.brindisi,
+    end: stations.athina,
+    type: cardType.wild,
+    locomotives: 1,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.berlin,
+    end: stations.danzig,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.berlin,
+    end: stations.warszawa,
+    type: [cardType.purple, cardType.yellow],
+    double: true,
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ],
+  }, {
+    start: stations.berlin,
+    end: stations.wien,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.munchen,
+    end: stations.wien,
+    type: cardType.orange,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.venezia,
+    end: stations.zagrab,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wien,
+    end: stations.zagrab,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.zagrab,
+    end: stations.sarajevo,
+    type: cardType.red,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.danzig,
+    end: stations.riga,
+    type: cardType.black,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.riga,
+    end: stations.petrograd,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.riga,
+    end: stations.wilno,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.warszawa,
+    end: stations.wilno,
+    type: cardType.red,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wilno,
+    end: stations.petrograd,
+    type: cardType.blue,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.petrograd,
+    end: stations.moskva,
+    type: cardType.white,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wilno,
+    end: stations.smolensk,
+    type: cardType.yellow,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.smolensk,
+    end: stations.moskva,
+    type: cardType.orange,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wien,
+    end: stations.warszawa,
+    type: cardType.blue,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.warszawa,
+    end: stations.kyiv,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wilno,
+    end: stations.kyiv,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.smolensk,
+    end: stations.kyiv,
+    type: cardType.red,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.wien,
+    end: stations.budapest,
+    type: [cardType.red, cardType.white],
+    wagons: [
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ],
+      [
+        { x: 0, y: 0, r: 0 },
+        { x: 0, y: 0, r: 0 },
+      ]
+    ],
+  }, {
+    start: stations.zagrab,
+    end: stations.budapest,
+    type: cardType.orange,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.budapest,
+    end: stations.kyiv,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.budapest,
+    end: stations.sarajevo,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.budapest,
+    end: stations.bucuresti,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.sarajevo,
+    end: stations.sofia,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.sarajevo,
+    end: stations.athina,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.moskva,
+    end: stations.kharkov,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.kyiv,
+    end: stations.kharkov,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.kharkov,
+    end: stations.rostov,
+    type: cardType.green,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.kyiv,
+    end: stations.bucuresti,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.rostov,
+    end: stations.sevastopol,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.rostov,
+    end: stations.sochi,
+    type: cardType.wild,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.bucuresti,
+    end: stations.sevastopol,
+    type: cardType.white,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.bucuresti,
+    end: stations.sofia,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.sofia,
+    end: stations.athina,
+    type: cardType.purple,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.sofia,
+    end: stations.constantinople,
+    type: cardType.blue,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.bucuresti,
+    end: stations.constantinople,
+    type: cardType.yellow,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  }, {
+    start: stations.sevastopol,
+    end: stations.sochi,
+    type: cardType.wild,
+    locomotives: 1,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.sochi,
+    end: stations.erzurum,
+    type: cardType.red,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.sevastopol,
+    end: stations.erzurum,
+    type: cardType.wild,
+    locomotives: 2,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.erzurum,
+    end: stations.angora,
+    type: cardType.black,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.sevastopol,
+    end: stations.constantinople,
+    type: cardType.wild,
+    locomotives: 2,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.constantinople,
+    end: stations.angora,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.constantinople,
+    end: stations.smyrna,
+    type: cardType.wild,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.angora,
+    end: stations.smyrna,
+    type: cardType.orange,
+    tunnel: true,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.athina,
+    end: stations.smyrna,
+    type: cardType.wild,
+    locomotives: 1,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
+  {
+    start: stations.smyrna,
+    end: stations.palermo,
+    type: cardType.wild,
+    locomotives: 2,
+    wagons: [
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+      { x: 0, y: 0, r: 0 },
+    ],
+  },
 ];
