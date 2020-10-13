@@ -1,5 +1,6 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
 import cardType from './cardType';
+import stations from './stations';
 
 export const Fahrschein = {
   setup,
@@ -37,6 +38,12 @@ function setup(ctx) {
       cards,
       trains: 45,
       stations: 3,
+      claimedRoutes: [
+        {
+          start: stations.paris,
+          end: stations.bruxelles
+        }
+      ],
     };
   }
 
