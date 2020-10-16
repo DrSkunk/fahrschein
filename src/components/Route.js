@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Draggable from 'react-draggable';
 import cardType from '../game/cardType';
 
 const Rect = styled.rect`
@@ -40,65 +41,91 @@ export default class Route extends React.Component {
         }
     }
 
-    render() {
-        // console.log(this.props)
-        // const { route } = this.props;
-        // const wagons = route.wagons.map(({ x, y, r }) => {
-        //     console.log(x, y, r)
-        //     return <Rect width={35} height={12} transform={`translate(${x},${y}) rotate(${r})`} />
-        // })
-        // return (
-        //     <g>
-        //         {wagons}
-        //     </g>
-        // );
-        let line;
-        const { route, onClick } = this.props;
-        if (route.double) {
-            line = <Line
-                x1={route.start.x}
-                y1={route.start.y}
-                x2={route.end.x}
-                y2={route.end.y}
-                double={route.double}
-                hover={this.state.hover}
-                onMouseEnter={() => { this.setState({ hover: true }) }}
-                onMouseLeave={() => { this.setState({ hover: false }) }}
-                onClick={onClick}
-                color={routeColor[route.type[0]]}
-            />
-        }
-        else {
-            line = <Line
-                x1={route.start.x}
-                y1={route.start.y}
-                x2={route.end.x}
-                y2={route.end.y}
-                double={route.double}
-                hover={this.state.hover}
-                onMouseEnter={() => { this.setState({ hover: true }) }}
-                onMouseLeave={() => { this.setState({ hover: false }) }}
-                onClick={onClick}
-                color={routeColor[route.type]}
-            />
-        }
-        let amountOfWagons;
-        if (route.double) {
-            amountOfWagons = route.wagons[0].length;
-        } else {
-            amountOfWagons = route.wagons.length;
-        }
-        const textX = (route.start.x + route.end.x) / 2
-        const textY = (route.start.y + route.end.y) / 2
+    handleStop = (e, { x, y }) => {
+        console.log('Event: ', e);
+        console.log('Data: ', x, y);
+    }
 
-        let locomotivesText = null;
-        if (route.locomotives) {
-            locomotivesText = ":" + route.locomotives;
-        }
-        return <g>
-            {line}
-            <Text x={textX} y={textY}>{amountOfWagons}{locomotivesText}</Text>
-        </g>
+    render() {
+        // return <Draggable><Rect width={35} height={12} /></Draggable>
+        // console.log(this.props)
+        const { route, onDragStop, routeIndex } = this.props;
+        const { start, end } = route;
+
+        const width = 35;
+        const height = 12;
+
+        const wagons = route.wagons.map(({ x, y, r }, wagonIndex) => {
+            // console.log(x, y, r)
+            const newX = ((start.x + end.x) / 2) - (width / 2);
+            const newY = ((start.y + end.y) / 2) - (height / 2);
+            const newR = 0;
+            return (
+                <Draggable
+                    defaultPosition={{ x: newX, y: newY }}
+                    onStop={(e, data) => { onDragStop(route, routeIndex, wagonIndex, data.x, data.y) }}
+                >
+                    <Rect width={width}
+                        height={height}
+                        transform={`translate(${newX},${newY}) rotate(${newR})`}
+                    />
+                </Draggable>
+            );
+        })
+        return (
+            <g>
+                {wagons}
+            </g>
+        );
+
+
+        // let line;
+        // const { route, onClick } = this.props;
+        // if (route.double) {
+        //     line = <Line
+        //         x1={route.start.x}
+        //         y1={route.start.y}
+        //         x2={route.end.x}
+        //         y2={route.end.y}
+        //         double={route.double}
+        //         hover={this.state.hover}
+        //         onMouseEnter={() => { this.setState({ hover: true }) }}
+        //         onMouseLeave={() => { this.setState({ hover: false }) }}
+        //         onClick={onClick}
+        //         color={routeColor[route.type[0]]}
+        //     />
+        // }
+        // else {
+        //     line = <Line
+        //         x1={route.start.x}
+        //         y1={route.start.y}
+        //         x2={route.end.x}
+        //         y2={route.end.y}
+        //         double={route.double}
+        //         hover={this.state.hover}
+        //         onMouseEnter={() => { this.setState({ hover: true }) }}
+        //         onMouseLeave={() => { this.setState({ hover: false }) }}
+        //         onClick={onClick}
+        //         color={routeColor[route.type]}
+        //     />
+        // }
+        // let amountOfWagons;
+        // if (route.double) {
+        //     amountOfWagons = route.wagons[0].length;
+        // } else {
+        //     amountOfWagons = route.wagons.length;
+        // }
+        // const textX = (route.start.x + route.end.x) / 2
+        // const textY = (route.start.y + route.end.y) / 2
+
+        // let locomotivesText = null;
+        // if (route.locomotives) {
+        //     locomotivesText = ":" + route.locomotives;
+        // }
+        // return <g>
+        //     {line}
+        //     <Text x={textX} y={textY}>{amountOfWagons}{locomotivesText}</Text>
+        // </g>
     }
 }
 // transform: `rotate(-30, ${nameCoordinates.x}, ${nameCoordinates.y})`,

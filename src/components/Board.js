@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import Station from './Station';
 import stations from '../game/stations';
 // import stations from '../game/oldStations';
@@ -6,9 +7,18 @@ import routes from '../game/routes';
 import Route from './Route';
 import cardType from '../game/cardType';
 
+import europeMap from '../euMap.jpg';
+
+const Map = styled.div`
+  background-image: url(${europeMap});
+  background-repeat: no-repeat;
+  background-size: 1000px 645px;
+`
+
 export class FahrscheinBoard extends React.Component {
   state = {
     selectedRoute: null,
+    routes
   }
 
   drawOpenCard = (index) => {
@@ -19,7 +29,32 @@ export class FahrscheinBoard extends React.Component {
     this.props.moves.drawDeckCard();
   };
 
+  onDragStop = (route, routeIndex, wagonIndex, x, y) => {
+    console.log(wagonIndex, x, y)
+    this.setState(state => (
+      {
+        routes: [
+          ...state.routes.slice(0, routeIndex),
+          {
+            ...route,
+            wagons: [
+              ...route.wagons.slice(0, wagonIndex),
+              {
+                x,
+                y,
+                r: 90
+              },
+              ...route.wagons.slice(wagonIndex + 1, route.wagons.length),
+            ]
+          },
+          ...state.routes.slice(routeIndex + 1, state.routes.length),
+        ]
+      })
+    )
+  }
+
   render() {
+    console.log("routes", this.state.routes, this.state.routes.length)
     const { G, ctx } = this.props;
     const openDeck = G.openDeck.map((card, i) => (
       <button
@@ -46,6 +81,8 @@ export class FahrscheinBoard extends React.Component {
         key={"route" + i}
         route={route}
         onClick={() => { this.setState({ selectedRoute: route }) }}
+        onDragStop={this.onDragStop}
+        routeIndex={i}
       />
     });
 
@@ -79,12 +116,15 @@ export class FahrscheinBoard extends React.Component {
         <button onClick={this.drawDeckCard}>Deck</button>
         {hand}
         {modal}
-        <div>
-          <svg width={1000} height={1000}>
+        <Map>
+          <svg width={1000} height={645}>
             {routeElements}
             {stationElements}
           </svg>
-        </div>
+        </Map>
+        <pre>
+          {JSON.stringify(this.state.routes, null, 2)}
+        </pre>
       </div>
     );
   }
